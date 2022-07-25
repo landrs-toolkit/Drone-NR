@@ -24,9 +24,12 @@ If this file is not there after installing Mavlink-router it should be created. 
 This becomes useful when using a reverse SSH tunnel.
 
 ## How to run
+Simply:
 ```
 mavlink-routerd
 ```
+
+
 Example output:
 ```
 mavlink-router version v2-229-g022333d
@@ -34,6 +37,32 @@ Opened UART [4]bravo: /dev/ttyACM0
 UART [4]bravo: speed = 921600
 UART [4]bravo: flowcontrol = enabled
 ```
+
+
+**Ground Control Station**
+Mavlink Router is to be installed on the Ground Control Station as well. The TCP server opened when: 
+```
+mavlink-routerd
+```
+is run. will listen to the specific port to communicate with mission planner, and forwards this to the TCP server (IP and port specified)
+
+Example output:
+```
+mavlink-router version v2-229-g022333d
+Opened UDP Client [4]local 127.0.0.1:14550
+Opened TCP Server [6] [::]6789 
+```
+
+**Reverse SSH:**
+The PiHAT acts in similar fashion to a modem, hence it is to be considered a NATing device. The PiHAT will provide the Rpi with a local IP address. (Local to itself) meaning the Ground Control Station cannot access the RPi via the mobile network. Reverse SSH is the second option to work around this. (Other than the first one described above: which uses TCP servers) Doing the below rSSH command will ensure a two way communication channel from the Cube Pilot to the Ground control station via the RPi connected to mobile network.
+
+Command:
+```
+ssh -N -R 5678:localhost:6789 scifly@13.0.0.1
+```
+
+
+
 
 
 
