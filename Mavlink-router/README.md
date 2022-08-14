@@ -24,7 +24,33 @@ If this file is not there after installing Mavlink-router it should be created. 
 This becomes useful when using a reverse SSH tunnel.
 
 ## How to run
-Simply:
+
+Mavlink-router can be setup to run as run as a service and auto-start at boot. Check documentation here. It will automatically use the setting in main.conf file.
+
+```
+systemctl status mavlink-router.service
+
+● mavlink-router.service - MAVLink Router
+     Loaded: loaded (/lib/systemd/system/mavlink-router.service; enabled; vendor preset: e>
+     Active: active (running) since Mon 2022-07-25 10:41:35 BST; 7s ago
+   Main PID: 3620 (mavlink-routerd)
+      Tasks: 1 (limit: 1598)
+        CPU: 31ms
+     CGroup: /system.slice/mavlink-router.service
+             └─3620 /usr/bin/mavlink-routerd
+
+Jul 25 10:41:35 raspberrypi systemd[1]: Started MAVLink Router.
+Jul 25 10:41:35 raspberrypi mavlink-routerd[3620]: mavlink-router version v2-229-g022333d
+Jul 25 10:41:35 raspberrypi mavlink-routerd[3620]: Opened UART [4]bravo: /dev/ttyACM0
+Jul 25 10:41:35 raspberrypi mavlink-routerd[3620]: UART [4]bravo: speed = 921600
+Jul 25 10:41:35 raspberrypi mavlink-routerd[3620]: UART [4]bravo: flowcontrol = enabled
+Jul 25 10:41:35 raspberrypi mavlink-routerd[3620]: Opened TCP Client [6]delta: 13.0.0.1:67>
+Jul 25 10:41:35 raspberrypi mavlink-routerd[3620]: Opened TCP Server [7] [::]:5678
+Jul 25 10:41:36 raspberrypi mavlink-routerd[3620]: UART [4]bravo: Baudrate 921600 responde>
+lines 1-17/17 (END)
+```
+
+Or Manually:
 ```
 mavlink-routerd
 ```
@@ -38,6 +64,11 @@ UART [4]bravo: speed = 921600
 UART [4]bravo: flowcontrol = enabled
 ```
 
+**N.B** 
+When the PiHAT is connected to the RPi. A default IP route is automatically configured. Creating two IP routes, this causes confusion for the Pi when choosing route to use. The first default route is to be deleted, this should no be the default one as it is only the ethernet connection to the Pi. Hence:
+```
+sudo ip r d default via 10.42.0.1 dev eth0 proto dhcp src 10.42.0.48 metric 202
+```
 
 **Ground Control Station**
 Mavlink Router is to be installed on the Ground Control Station as well. The TCP server opened when: 

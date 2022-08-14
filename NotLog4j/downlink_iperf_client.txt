@@ -1,0 +1,14 @@
+  MegaBytes per second (MB/s)  596.1444824266105  MegaBytes per second (MB/s)  563.5127611275653  MegaBytes per second (MB/s)  539.8736695613226  MegaBytes per second (MB/s)  536.1926273888695  MegaBytes per second (MB/s)  593.3969288273478  MegaBytes per second (MB/s)  557.4163875418686  MegaBytes per second (MB/s)  540.6774226094566  MegaBytes per second (MB/s)  510.3105183357439  MegaBytes per second (MB/s)  533.6560765305306  MegaBytes per second (MB/s)  542.4811366214424  MegaBytes per second (MB/s)  538.6638137897937  MegaBytes per second (MB/s)  553.5518284454165  MegaBytes per second (MB/s)  572.6916658015986<built-in method now of type object at 0x493260>  MegaBytes per second (MB/s)  563.3004862120027<built-in method now of type object at 0x493260>  MegaBytes per second (MB/s)  547.1492773132422<built-in method now of type object at 0x493260>  MegaBytes per second (MB/s)  547.3981839377875<built-in method now of type object at 0x493260>  MegaBytes per second (MB/s)  556.137660192641<built-in method now of type object at 0x493260>  MegaBytes per second (MB/s)  535.4024579091299<built-in method now of type object at 0x493260>------------------------------------------------  MegaBytes per second (MB/s)  679.739659710331<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  579.3731182860145<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  551.3361294307716<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  564.1267318191439<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  573.2169082753038<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  585.3170046945169<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  564.1199728423659<built-in method now of type object at 0x493260>
+------------------------------------------------  MegaBytes per second (MB/s)  562.7207836866371<built-in method now of type object at 0x493260>
+  MegaBytes per second (MB/s)  534.6685055265737<built-in method now of type object at 0x493260>
+--------------------------------------------------------
+  MegaBytes per second (MB/s)  527.4092856028763 | 2022-08-14 20:58:26.925157
+  MegaBytes per second (MB/s)  601.1339811416397 | 2022-08-14 20:58:29.015537
+  MegaBytes per second (MB/s)  595.9293899881864 | 2022-08-14 20:58:31.088330
+  MegaBytes per second (MB/s)  521.1530655298113 | 2022-08-14 20:58:33.206145

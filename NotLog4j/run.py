@@ -1,6 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/env/python3
 
-# Ngonidzashe Mombeshora
+# Ngonidzashe Mombshora
 # NotLog4j 
 # Script to monitor and Log mobile network status, RSSI, throughput, etc
 # write everthing to logs.txt
@@ -8,21 +8,26 @@
 
 import serial
 import time
-ser = serial.Serial("/dev/ttyUSB2",115200)
 import datetime
 import re
+import iperf3
 
 
+ser = serial.Serial("/dev/ttyUSB2",115200)
 dt = datetime.datetime.now()  
-
 rec_buff = ''
+f = open("logged.txt", "a")
+f.write("------------------------------------------------------------------------\n")
+
 
 print("----------------------------------------")
 print("----------- starting... ----------------")
 print("----------------------------------------")
 
 def send_at(command,back,timeout):
-        # print(command)
+        """
+        For sending serial command. Takes form Command, back i.e response and timeout
+        """
         rec_buff = ''
         ser.write((command+'\r\n').encode())
         time.sleep(timeout)
@@ -44,40 +49,78 @@ def send_at(command,back,timeout):
 #takes in key-value pairs
 # function call example
 # displayArgument(argument1 ="Geeks", argument2 = 4,argument3 ="Geeks")
+
 def logger(argument0 ,*argument1, **argument2):
-        f = open("loggs.txt", "a")
-        f.write(str(dt))
+        """
+        Write logs to log file. Parameters to be given as Key value pairs.
+        """
+        print("Logging")
+        dt = datetime.datetime.now()  
+
+        f.write(str(dt) + " | ")
+        
         f.write(argument0)
 
         for arg in argument1:
+                print("arg1")
                 print(arg)
      
     # displaying non keyword arguments
         for arg in argument2.items():
                 print(arg)
+                print("arg2")
+
+        f.write('\n')
         f.close
+        print("Done logging")
         return
                 
 def get_RSSI():
-        # query signal strength
+        """ 
+        Query Relative Signal Strength Index i.e Signal quality
+        pg 53
+        Returns RSSI and Bit error ratio
+        """
+        print("Getting RSSI...")
         argz =  send_at('AT+CSQ','OK',1)
-        split_argzs = re.split('[:,]',argz) #create list
+        split_argzs = re.split('[:,\r,\n]',argz) #create list
+        print("split_args")
+        print(split_argzs)
         # logger(RSSI = argz)
-        rssi_stats = split_argzs[0] + ":" + " RSSI:" + split_argzs[1] + " BER:" + split_argzs[2] 
-        # print(stats)
+        rssi_stats = split_argzs[2] + ":" + " RSSI:" + split_argzs[3] + " BER:" + split_argzs[4] + " | "
+        print(rssi_stats)
+        print("Done getting RSSI")
         return rssi_stats
      
 
 
-rssi_stats = get_RSSI()
-logger(rssi_stats)
+# rssi_stats = get_RSSI()
+# print(rssi_stats)
+# logger(rssi_stats)
 
-time.sleep(20)
+# time.sleep(20)
 
-print("...done")
+
+while True:
+        rssi_stats = get_RSSI()
+        logger(rssi_stats)
+        time.sleep(1)
+
+
+
+# --------------------------------------------------------
+# iperf3
+# ----------------------------------------------------------
+
+
+
+
+
+        
+# print("...done")
 
 # try:
-        # send_at('AT+CSQ','OK',1) # query signal strength
+#         send_at('AT+CSQ','OK',1) # query signal strength
 #         # send_at('AT+CPSI?','OK',1)  #enquire UE system information
 #         # send_at('AT+CNMP=2','OK',1)  #preferred mode selection 2: auto, 71:NR, 109:dual
 #         # time.sleep(1)
@@ -85,6 +128,3 @@ print("...done")
 #         time.sleep(20)
 # except :
 #         ser.close()
-
-
-# 
