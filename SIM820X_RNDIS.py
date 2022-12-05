@@ -2,7 +2,7 @@
 
 import serial
 import time
-ser = serial.Serial("/dev/ttyUSB2",115200)
+ser = serial.Serial("/dev/ttyUSB3",115200)
 
 rec_buff = ''
 

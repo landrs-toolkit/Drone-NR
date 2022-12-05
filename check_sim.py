@@ -25,6 +25,10 @@ try:
         send_at('AT+SIMCOMATI','OK',1)
         send_at('AT+CSQ','OK',1)
         send_at('AT+COPS=?','OK',3) #search for operators --working
+        send_at('AT+CGDCONT?',1) #read APN--to see if its oai.ipv4
+
+# write APN command
+
         send_at('AT+COPS?','OK',3)
         # send_at('AT+CPSI?','OK',1)
         # send_at('AT+CNMP=2','OK',1)
